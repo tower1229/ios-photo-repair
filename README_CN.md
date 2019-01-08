@@ -12,15 +12,19 @@
 
 1. 使用npm安装:
 
-`npm i ios-photo-repair --save`
+```shell
+npm i ios-photo-repair --save
+```
 
 2. 导入到项目
 
-`let { fixBySelector, fixImgFile } = require("ios-photo-repair")`
+```shell
+let { fixBySelector, fixImgFile } = require("ios-photo-repair")
+```
 
 3. 修复来自上传控件的图片文件
 
-```
+```shell
 // fixImgFile(file, compressOption)
 
 fixImgFile(file, {
@@ -33,7 +37,7 @@ fixImgFile(file, {
 
 或者修复一个网页中的图片元素
 
-```
+```shell
 //fixBySelector(querySelector)
 
 fixBySelector('#iosphoto')

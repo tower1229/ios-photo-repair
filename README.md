@@ -10,17 +10,21 @@ Simple and direct, two methods to solve two kinds of repair requirements in WEB 
 
 ## Getting started
 
-1. install width npm:
+1. install with npm:
 
-`npm i ios-photo-repair --save`
+```shell
+npm i ios-photo-repair --save
+```
 
 2. import to your project
 
-`let { fixBySelector, fixImgFile } = require("ios-photo-repair")`
+```shell
+let { fixBySelector, fixImgFile } = require("ios-photo-repair")
+```
 
 3. Fix the image file obtained by `input:type=file`
 
-```
+```shell
 // fixImgFile(file, compressOption)
 
 fixImgFile(file, {
@@ -33,7 +37,7 @@ fixImgFile(file, {
 
 Or, fix an img element
 
-```
+```shell
 //fixBySelector(querySelector)
 
 fixBySelector('#iosphoto')
