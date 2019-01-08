@@ -1,0 +1,28 @@
+{
+  "name": "ios-photo-repair",
+  "version": "1.0.0",
+  "description": "An IOS Photo Direction Repair Tool",
+  "main": "dist/fixer.js",
+  "scripts": {
+    "dev": "rm -rf .cache && rm -rf build && parcel src/index.html -d build",
+    "build": "rm -rf .cache && rm -rf dist && parcel build src/lib/fixer.js",
+    "test": "rm -rf .cache && rm -rf build && parcel test/index.html -d build"
+  },
+  "author": "tower1229@foxmail.com",
+  "dependencies": {
+    "exif-js": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "autoprefixer": "^9.4.4",
+    "parcel-bundler": "^1.11.0",
+    "postcss-modules": "^1.4.1"
+  },
+  "license": "MIT",
+  "browserslist": [
+    "last 1 version",
+    "> 1%",
+    "IE 10"
+  ]
+}
