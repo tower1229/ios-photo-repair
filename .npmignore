@@ -1,2 +1,6 @@
-src
-test
+/build
+/.cache
+/node_modules
+/.vscode
+/src
+/test

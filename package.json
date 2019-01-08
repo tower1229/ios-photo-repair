@@ -1,6 +1,6 @@
 {
   "name": "ios-photo-repair",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An IOS Photo Direction Repair Tool",
   "main": "dist/fixer.js",
   "scripts": {
@@ -10,7 +10,8 @@
   },
   "author": "tower1229@foxmail.com",
   "dependencies": {
-    "exif-js": "^2.3.0"
+    "exif-js": "^2.3.0",
+    "ios-photo-repair": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
