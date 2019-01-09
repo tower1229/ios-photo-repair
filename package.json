@@ -1,6 +1,6 @@
 {
   "name": "ios-photo-repair",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An IOS Photo Direction Repair Tool",
   "main": "dist/fixer.js",
   "scripts": {

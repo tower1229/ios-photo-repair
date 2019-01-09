@@ -38,6 +38,7 @@ export const fixBySelector = function(selector) {
         for (let i = 0; i < imgs.length; i++) {
             let img = imgs[i]
             if (img.tagName.toLowerCase() === 'img') {
+                img.crossOrigin = "Anonymous";
                 img.onload = function() {
                     if (!img.dataset.iosfixed) {
                         getOri(img).then(orientation => {
