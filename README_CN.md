@@ -28,8 +28,9 @@ let { fixBySelector, fixImgFile } = require("ios-photo-repair")
 // fixImgFile(file, compressOption)
 
 fixImgFile(file, {
-    width:500,
-    height:500
+    width:500,      // 默认不限制
+    height:500,     // 默认不限制
+    ratio: 0.92     // 默认不压缩
 }).then(base64 => {
     document.getElementById('iosphoto').src = base64
 })
