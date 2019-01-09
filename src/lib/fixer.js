@@ -33,26 +33,32 @@ const imgToCanvas = function(img, orientation) {
 }
 
 export const fixBySelector = function(selector) {
+    const fixImg = function(img){
+        if (!img.dataset.iosfixed) {
+            getOri(img).then(orientation => {
+                if (orientation == 6) {
+                    imgToCanvas(img, orientation).then(canvas => {
+                        img.dataset.iosfixed = true
+                        img.src = canvas.toDataURL();
+                    })
+                }
+            })
+        }
+    }
     let imgs = document.querySelectorAll(selector)
     if (imgs.length) {
         for (let i = 0; i < imgs.length; i++) {
             let img = imgs[i]
             if (img.tagName.toLowerCase() === 'img') {
                 img.crossOrigin = "Anonymous";
-                img.onload = function() {
-                    if (!img.dataset.iosfixed) {
-                        getOri(img).then(orientation => {
-                            if (orientation == 6) {
-                                imgToCanvas(img, orientation).then(canvas => {
-                                    img.dataset.iosfixed = true
-                                    img.src = canvas.toDataURL();
-                                })
-                            }
-                        })
+                if(img.complete){
+                    fixImg(img)
+                }else{
+                    img.onload = function() {
+                        fixImg(img)
                     }
                 }
             }
-
         }
 
     } else {

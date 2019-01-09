@@ -3,7 +3,9 @@ let {
     fixImgFile
 } = require("../lib/fixer.js")
 
-fixBySelector('#iosphoto')
+window.onload = function(){
+    fixBySelector('#iosphoto')
+}
 
 document.getElementById('fileinput').onchange = function(evt){
     let file = evt.target.files[0]
