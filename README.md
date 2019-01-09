@@ -2,6 +2,8 @@ English | [中文](README_CN.md)
 
 # ios-photo-repair
 
+[![npm](https://img.shields.io/npm/v/ios-photo-repair.svg)](https://www.npmjs.com/package/@tower1229/ios-photo-repair) [![compatibility](https://img.shields.io/badge/compatibility-IE10%2B-orange.svg)]() [![license](https://img.shields.io/github/license/tower1229/ios-photo-repair.svg)]()
+
 An IOS Photo Direction Repair Tool
 
 ## Features
