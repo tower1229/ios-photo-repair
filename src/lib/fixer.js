@@ -1,4 +1,26 @@
 let EXIF = require("exif-js")
+const getURLBase64 = function(url) {
+    return new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest()
+        xhr.open('get', url, true)
+        xhr.responseType = 'blob'
+        xhr.onload = function() {
+            if (this.status === 200) {
+                let blob = this.response
+                let fileReader = new FileReader()
+                fileReader.onloadend = function(e) {
+                    let result = e.target.result
+                    resolve(result)
+                }
+                fileReader.readAsDataURL(blob)
+            }
+        }
+        xhr.onerror = function() {
+            reject()
+        }
+        xhr.send()
+    })
+}
 
 const getOri = function(file) {
     return new Promise(resolve => {
@@ -33,13 +55,27 @@ const imgToCanvas = function(img, orientation) {
 }
 
 export const fixBySelector = function(selector) {
-    const fixImg = function(img){
+    const fixImg = function(img) {
         if (!img.dataset.iosfixed) {
             getOri(img).then(orientation => {
                 if (orientation == 6) {
                     imgToCanvas(img, orientation).then(canvas => {
-                        img.dataset.iosfixed = true
-                        img.src = canvas.toDataURL();
+                        try{
+                            img.src = canvas.toDataURL();
+                            img.dataset.iosfixed = true;
+                        }catch(e) {
+                            getURLBase64(img.src).then(base64 => {
+                                img.onload = function() {
+                                    if (!img.dataset.iosfixed) {
+                                        imgToCanvas(img, orientation).then(canvas => {
+                                            img.src = canvas.toDataURL();
+                                            img.dataset.iosfixed = true
+                                        })
+                                    }
+                                }
+                                img.src = base64;
+                            })
+                        }
                     })
                 }
             })
@@ -51,9 +87,9 @@ export const fixBySelector = function(selector) {
             let img = imgs[i]
             if (img.tagName.toLowerCase() === 'img') {
                 img.crossOrigin = "Anonymous";
-                if(img.complete){
+                if (img.complete) {
                     fixImg(img)
-                }else{
+                } else {
                     img.onload = function() {
                         fixImg(img)
                     }
@@ -107,7 +143,7 @@ export const fixImgFile = function(file, option) {
     const opt = Object.assign({
         ratio: 2
     }, option || {})
-    
+
     return new Promise(resolve => {
         if (file.type.indexOf('image') === 0) {
             getOri(file).then(orientation => {
@@ -117,21 +153,18 @@ export const fixImgFile = function(file, option) {
                     let img = document.createElement('img');
 
                     img.onload = function() {
-                        const canvas = document.createElement('canvas'),
-                            ctx = canvas.getContext('2d');
-
                         if (opt.width || opt.height) {
                             let compressSize;
-                            if(orientation===6){
+                            if (orientation === 6) {
                                 compressSize = computeSize(img.height, img.width, opt.width, opt.height)
                                 img.targetWidth = compressSize.height;
                                 img.targetHeight = compressSize.width;
-                            }else{
+                            } else {
                                 compressSize = computeSize(img.width, img.height, opt.width, opt.height)
                                 img.targetWidth = compressSize.width;
                                 img.targetHeight = compressSize.height;
                             }
-                            
+
                         }
                         imgToCanvas(img, orientation).then(canvas => {
                             resolve(canvas.toDataURL('image/jpeg', opt.ratio))

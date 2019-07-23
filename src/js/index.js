@@ -8,7 +8,9 @@ window.onload = function(){
 }
 
 document.getElementById('fileinput').onchange = function(evt){
-    let file = evt.target.files[0]
+    let file = evt.target.files[0];
+    console.log(file);
+    
     fixImgFile(file, {
         width:500
     }).then(res => {
