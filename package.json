@@ -10,8 +10,7 @@
   },
   "author": "tower1229@foxmail.com",
   "dependencies": {
-    "exif-js": "^2.3.0",
-    "ios-photo-repair": "^1.0.6"
+    "exif-js": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
