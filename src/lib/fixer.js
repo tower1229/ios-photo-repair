@@ -15,8 +15,8 @@ const getURLBase64 = function(url) {
                 fileReader.readAsDataURL(blob)
             }
         }
-        xhr.onerror = function() {
-            reject()
+        xhr.onerror = function(err) {
+            reject(err)
         }
         xhr.send()
     })
@@ -144,7 +144,7 @@ export const fixImgFile = function(file, option) {
         ratio: 2
     }, option || {})
 
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
         if (file.type.indexOf('image') === 0) {
             getOri(file).then(orientation => {
                 let oReader = new FileReader();
@@ -173,7 +173,11 @@ export const fixImgFile = function(file, option) {
                     img.src = base64;
                 }
                 oReader.readAsDataURL(file);
+            }).catch(err => {
+                reject(err)
             })
+        }else{
+            reject('非图片文件不支持压缩')
         }
     })
 
