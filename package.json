@@ -13,14 +13,14 @@
     "exif-js": "^2.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "autoprefixer": "^9.6.1",
-    "parcel-bundler": "^1.12.3",
-    "postcss-modules": "^1.4.1",
-    "lodash": ">=4.17.13",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "autoprefixer": "^9.7.5",
+    "parcel-bundler": "^1.12.4",
+    "postcss-modules": "^1.5.0",
+    "lodash": ">=4.17.15",
     "js-yaml": ">=3.13.1",
-    "safer-eval": ">=1.3.2"
+    "safer-eval": ">=1.3.6"
   },
   "license": "MIT",
   "browserslist": [
