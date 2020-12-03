@@ -1,7 +1,7 @@
 let {
     fixBySelector,
     fixImgFile
-} = require("ios-photo-repair")
+} = require("../../dist/fixer")
 
 fixBySelector('#iosphoto')
 
