@@ -1,6 +1,6 @@
 {
   "name": "ios-photo-repair",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "An IOS Photo Direction Repair Tool",
   "main": "dist/fixer.js",
   "scripts": {
@@ -16,7 +16,10 @@
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.7",
     "parcel-bundler": "^1.12.4",
-    "node-forge": ">=0.10.0"
+    "node-forge": ">=0.10.0",
+    "glob-parent": ">=5.1.2",
+    "is-svg": ">=4.2.2",
+    "postcss": ">=7.0.36"
   },
   "license": "MIT",
   "browserslist": [
