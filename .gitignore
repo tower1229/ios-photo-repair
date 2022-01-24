@@ -1,4 +1,4 @@
-/build
-/.cache
+/test
+/.parcel-cache
 /node_modules
 /.vscode

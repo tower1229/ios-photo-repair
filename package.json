@@ -1,35 +1,21 @@
 {
   "name": "ios-photo-repair",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "An IOS Photo Direction Repair Tool",
-  "main": "dist/fixer.js",
+  "source": "src/fixer.js",
+  "main": "dist/main.js",
+  "module": "dist/module.js",
   "scripts": {
-    "dev": "rm -rf .cache && rm -rf build && parcel src/index.html -d build",
-    "build": "rm -rf .cache && rm -rf dist && parcel build src/lib/fixer.js",
-    "test": "rm -rf .cache && rm -rf build && parcel test/index.html -d build"
+    "dev": "parcel test/index.html",
+    "watch": "parcel watch",
+    "build": "parcel build"
   },
   "author": "tower1229@foxmail.com",
   "dependencies": {
     "exif-js": "^2.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "@babel/preset-env": "^7.12.7",
-    "parcel-bundler": "^1.12.4",
-    "node-forge": ">=0.10.0",
-    "glob-parent": ">=5.1.2",
-    "is-svg": ">=4.2.2",
-    "postcss": ">=7.0.36",
-    "nth-check": ">=2.0.1",
-    "path-parse": ">=1.0.7",
-    "ansi-regex": ">=5.0.1",
-    "ws": ">=5.2.3",
-    "color-string": ">=1.5.5"
+    "parcel": "^2.2.1"
   },
-  "license": "MIT",
-  "browserslist": [
-    "last 1 version",
-    "> 1%",
-    "IE 10"
-  ]
+  "license": "MIT"
 }
