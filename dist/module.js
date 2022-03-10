@@ -110,11 +110,12 @@ const $5b02762f359a5b4d$var$computeSize = function(originWidth, originHeight, ma
 };
 const $5b02762f359a5b4d$export$9fe3fb24d050ce98 = function(file, option) {
     const opt = Object.assign({
-        ratio: 2
+        ratio: 2,
+        outType: 'base64' // base64 | blob
     }, option || {
     });
     return new Promise((resolve, reject)=>{
-        if (file.type.indexOf('image') === 0) $5b02762f359a5b4d$var$getOri(file).then((orientation)=>{
+        if (file.type.indexOf('image/') === 0) $5b02762f359a5b4d$var$getOri(file).then((orientation)=>{
             let oReader = new FileReader();
             oReader.onload = function(e) {
                 let base64 = e.target.result;
@@ -133,7 +134,8 @@ const $5b02762f359a5b4d$export$9fe3fb24d050ce98 = function(file, option) {
                         }
                     }
                     $5b02762f359a5b4d$var$imgToCanvas(img, orientation).then((canvas)=>{
-                        resolve(canvas.toDataURL('image/jpeg', opt.ratio));
+                        if (opt.outType === 'blob') canvas.toBlob(resolve, 'image/jpeg', opt.ratio);
+                        else resolve(canvas.toDataURL('image/jpeg', opt.ratio));
                     });
                 };
                 img.src = base64;

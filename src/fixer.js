@@ -1,4 +1,5 @@
 let EXIF = require("exif-js")
+
 const getURLBase64 = function(url) {
     return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest()
@@ -141,11 +142,12 @@ const computeSize = function(originWidth, originHeight, maxWidth, maxHeight) {
 
 export const fixImgFile = function(file, option) {
     const opt = Object.assign({
-        ratio: 2
+        ratio: 2,        // 大于1使用默认值
+        outType: 'base64'           // base64 | blob
     }, option || {})
 
     return new Promise((resolve, reject) => {
-        if (file.type.indexOf('image') === 0) {
+        if (file.type.indexOf('image/') === 0) {
             getOri(file).then(orientation => {
                 let oReader = new FileReader();
                 oReader.onload = function(e) {
@@ -167,7 +169,12 @@ export const fixImgFile = function(file, option) {
 
                         }
                         imgToCanvas(img, orientation).then(canvas => {
-                            resolve(canvas.toDataURL('image/jpeg', opt.ratio))
+                            if(opt.outType==='blob'){
+                                canvas.toBlob(resolve, 'image/jpeg', opt.ratio)
+                            }else{
+                                resolve(canvas.toDataURL('image/jpeg', opt.ratio))
+                            }
+                            
                         })
                     }
                     img.src = base64;
