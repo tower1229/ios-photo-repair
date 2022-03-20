@@ -110,6 +110,8 @@ const $5b02762f359a5b4d$var$computeSize = function(originWidth, originHeight, ma
 };
 const $5b02762f359a5b4d$export$9fe3fb24d050ce98 = function(file, option) {
     const opt = Object.assign({
+        maxWidth: null,
+        maxHeight: null,
         ratio: 2,
         outType: 'base64' // base64 | blob
     }, option || {
@@ -121,14 +123,14 @@ const $5b02762f359a5b4d$export$9fe3fb24d050ce98 = function(file, option) {
                 let base64 = e.target.result;
                 let img = document.createElement('img');
                 img.onload = function() {
-                    if (opt.width || opt.height) {
+                    if (opt.maxWidth || opt.maxHeight) {
                         let compressSize;
                         if (orientation === 6) {
-                            compressSize = $5b02762f359a5b4d$var$computeSize(img.height, img.width, opt.width, opt.height);
+                            compressSize = $5b02762f359a5b4d$var$computeSize(img.height, img.width, opt.maxWidth, opt.maxHeight);
                             img.targetWidth = compressSize.height;
                             img.targetHeight = compressSize.width;
                         } else {
-                            compressSize = $5b02762f359a5b4d$var$computeSize(img.width, img.height, opt.width, opt.height);
+                            compressSize = $5b02762f359a5b4d$var$computeSize(img.width, img.height, opt.maxWidth, opt.maxHeight);
                             img.targetWidth = compressSize.width;
                             img.targetHeight = compressSize.height;
                         }

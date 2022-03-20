@@ -142,6 +142,8 @@ const computeSize = function(originWidth, originHeight, maxWidth, maxHeight) {
 
 export const fixImgFile = function(file, option) {
     const opt = Object.assign({
+        maxWidth: null,
+        maxHeight: null,
         ratio: 2,        // 大于1使用默认值
         outType: 'base64'           // base64 | blob
     }, option || {})
@@ -155,14 +157,14 @@ export const fixImgFile = function(file, option) {
                     let img = document.createElement('img');
 
                     img.onload = function() {
-                        if (opt.width || opt.height) {
+                        if (opt.maxWidth || opt.maxHeight) {
                             let compressSize;
                             if (orientation === 6) {
-                                compressSize = computeSize(img.height, img.width, opt.width, opt.height)
+                                compressSize = computeSize(img.height, img.width, opt.maxWidth, opt.maxHeight)
                                 img.targetWidth = compressSize.height;
                                 img.targetHeight = compressSize.width;
                             } else {
-                                compressSize = computeSize(img.width, img.height, opt.width, opt.height)
+                                compressSize = computeSize(img.width, img.height, opt.maxWidth, opt.maxHeight)
                                 img.targetWidth = compressSize.width;
                                 img.targetHeight = compressSize.height;
                             }
