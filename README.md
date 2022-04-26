@@ -32,7 +32,8 @@ let { fixBySelector, fixImgFile } = require("ios-photo-repair")
 fixImgFile(file, {
     width:500,      // default unlimited
     height:500,     // default unlimited
-    ratio: 0.92     // default no compression
+    ratio: 0.92,     // default no compression
+    outType: 'blob'  // default 'base64'
 }).then(base64 => {
     document.getElementById('iosphoto').src = base64
 })
